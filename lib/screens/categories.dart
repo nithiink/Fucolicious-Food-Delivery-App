@@ -1,5 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import "package:flutter/material.dart";
+import 'package:git_sem_custom_food/screens/burger/burger_dashboard.dart';
+import 'package:git_sem_custom_food/screens/icecream/ice_cream_customisation.dart';
+import 'coffee/coffee_dashboard.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -20,7 +23,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
     super.initState();
 
     animationController = AnimationController(
-      duration: Duration(seconds: 4),
+      duration: Duration(seconds: 2),
       vsync: this,
     );
 
@@ -30,13 +33,17 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
     animationController.addListener(() {
       setState(() {});
     });
-
-
   }
 
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   animationController.dispose();
+  // }
+
   @override
-  void dispose() {
-    super.dispose();
+  void deactivate() {
+    super.deactivate();
     animationController.dispose();
   }
 
@@ -103,9 +110,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
                               Container(
                                 width: 322,
                                 height: 444,
-                                child: Image(
-                                  image: AssetImage(
-                                      "assests/categories_screen/Coffee_Card/Coffee_Card.png"),
+                                child: GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,MaterialPageRoute(builder:(context)=> CoffeeDashBoard()));
+                                  },
+                                  child: Image(
+                                    image: AssetImage(
+                                        "assests/categories_screen/Coffee_Card/Coffee_Card.png"),
+                                  ),
                                 ),
                               ),
                             ],
@@ -129,12 +141,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
                       animatedTexts : [
                         TypewriterAnimatedText(
                           'COFFEE',
+                          cursor: ' ',
                           textStyle: TextStyle(
                             fontFamily: "Antipasto Pro",
                             fontSize: 62,
                             color: Color.fromRGBO(244, 239, 227, 1),
                           ),
-                          speed: Duration(milliseconds: 666),
+                          speed: Duration(milliseconds: 300),
+
                         ),
                       ],
                     ),
@@ -189,9 +203,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
                               Container(
                                 width: 322,
                                 height: 444,
-                                child: Image(
-                                  image: AssetImage(
-                                      "assests/categories_screen/Burger_Card/Burger_Card.png"),
+                                child: GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,MaterialPageRoute(builder:(context)=> BurgerDashBoard()));
+                                  },
+                                  child: Image(
+                                    image: AssetImage(
+                                        "assests/categories_screen/Burger_Card/Burger_Card.png"),
+                                  ),
                                 ),
                               ),
                             ],
@@ -222,12 +241,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
                       animatedTexts : [
                         TypewriterAnimatedText(
                           'BURGER',
+                          cursor: ' ',
                           textStyle: TextStyle(
                             fontFamily: "Antipasto Pro",
                             fontSize: 62,
                             color: Color.fromRGBO(244, 239, 227, 1),
                           ),
-                          speed: Duration(milliseconds: 500),
+                          speed: Duration(milliseconds: 300),
                         ),
                       ],
                     ),
@@ -269,7 +289,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
                       children: [
                         Image(
                             image: AssetImage(
-                                "assests/categories_screen/Coffee_Card_Watermark/Coffee_Card_Watermark.png")),
+                                "assests/categories_screen/Coffee_Card_Watermark/Coffee_Card_Watermark.png"),
+                        ),
                         Positioned(
                           top: 16.83,
                           left: 27.13,
@@ -278,9 +299,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
                               Container(
                                 width: 322,
                                 height: 444,
-                                child: Image(
-                                  image: AssetImage(
-                                      "assests/categories_screen/Ice_Cream_Card/Ice_Cream_Card.png"),
+                                child: GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context,MaterialPageRoute(builder:(context)=> IceCreamCustomisation()));
+                                  },
+                                  child: Image(
+                                    image: AssetImage(
+                                        "assests/categories_screen/Ice_Cream_Card/Ice_Cream_Card.png"),
+                                  ),
                                 ),
                               ),
                             ],
@@ -310,12 +336,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
                       animatedTexts : [
                         TypewriterAnimatedText(
                           'ICECREAM',
+                          cursor: ' ',
                           textStyle: TextStyle(
                             fontFamily: "Antipasto Pro",
                             fontSize: 62,
                             color: Color.fromRGBO(244, 239, 227, 1),
                           ),
-                          speed: Duration(milliseconds: 375),
+                          speed: Duration(milliseconds: 250),
                         ),
                       ],
                     ),

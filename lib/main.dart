@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:git_sem_custom_food/screens/burger/burger_customisation.dart';
+import 'package:git_sem_custom_food/screens/burger/burger_dashboard.dart';
 import 'package:git_sem_custom_food/screens/categories.dart';
 import 'package:git_sem_custom_food/screens/dealsoftheday.dart';
 import 'package:git_sem_custom_food/screens/home.dart';
-import 'package:git_sem_custom_food/login_screens/welcome_screen.dart';
+import 'package:git_sem_custom_food/screens/icecream/ice_cream_customisation.dart';
+import 'package:git_sem_custom_food/screens/login_screens/signin_screen.dart';
+import 'package:git_sem_custom_food/screens/login_screens/signup_screen.dart';
+import 'screens/login_screens/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'screens/coffee/coffee_dashboard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
     MaterialApp(
-      home: FirebaseAuth.instance.currentUser == null ? WelcomeScreen() : MyApp(),
+      home:
+      FirebaseAuth.instance.currentUser == null ? WelcomeScreen() : MyApp(),
       title: "Custom Food",
       debugShowCheckedModeBanner: false,
     ),
@@ -27,21 +34,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   final _auth = FirebaseAuth.instance;
-  User loggedInUser ;
-
+  User loggedInUser;
 
   void getCurrentUser() async {
-
     await Firebase.initializeApp();
     try {
       final user = await _auth.currentUser;
       if (user != null) {
         loggedInUser = user;
       }
-    }
-    catch(e){
+    } catch (e) {
       print(e);
     }
   }
@@ -50,8 +53,8 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     getCurrentUser();
+    _selectedIndex = 0;
   }
-
 
   @override
   Widget build(BuildContext context) {
